@@ -132,11 +132,11 @@ void vectors() {
     // }
 }
 
-// list
-void list() {
+// list : dynamic, no random access allowed, just like vector
+void listArea() {
 
     // basic declaration
-    llist<int> ls;
+    list<int> ls;
 
     // pusing a value at back
     ls.push_back(2);
@@ -145,18 +145,114 @@ void list() {
 
     // pushing a value at front
     ls.push_front(3);
-    ls.empplace_front(1);
+    ls.emplace_front(1);
 
 
-    cout << ls << endl;
+    cout << *(ls.begin()) << endl;
+
+}
+
+// dequeues : dynamic, changes could be made at front, end and anywhere as random access is allowed
+void dequeArea() {
+    deque<int> dq;
+
+    // back operations
+    dq.push_back(3);
+    dq.emplace_back(4);
+
+    // front operations
+    dq.push_front(2);
+    dq.emplace_front(1);
+
+    // popping elements
+    dq.pop_back();
+    dq.pop_front();
+
+    // accessing elements directly
+    dq.front();
+    dq.back();
+
+    // others
+    dq.begin(); // gets iterator address of 1st value of container
+    // cout << "first element: " << *(dq.begin()) << endl;
+
+    dq.end();
+    // cout << "last element: " << *(dq.end()) << endl;
+    
+    // size
+    cout << "size: " <<  dq.size() << endl;
+
+    // cout << "element: " << dq[3] << endl;
 
 }
 
 
+// stack : it's a  linear data structure, that works on last in first out principle, random access not allowed, main fucntion: push, pop, top
+void stackArea(){
+
+    // basic operation
+    stack<int> st;
+    // creating empty containers
+    stack<int> st2, st3;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+
+    st.top(); // 3
+
+    st.pop(); // top = 2
+
+    // others
+    cout << "is empty: " << st.empty() << endl;
+
+    cout << "top element: " << st.top() << endl;
+
+    st.swap(st2);
+
+    cout << "is empty: " << st.empty() << endl;
+
+
+}
+
+// queue: work's on first in first out principle, FIFO
+void QueueArea() {
+
+    queue<int> q;
+
+    // Add elements
+    q.push(10);
+    q.push(20);
+    q.push(30);
+
+    cout << "Front: " << q.front() << endl; // 10
+    cout << "Back: " << q.back() << endl;   // 30
+
+    // Remove front element
+    q.pop();
+
+    cout << "Front after pop: " << q.front() << endl; // 20
+
+    // Check if empty
+    if (q.empty()) {
+        cout << "Queue is empty\n";
+    } else {
+        cout << "Queue size: " << q.size() << endl; // 2
+    }
+    
+
+}
+
+
+// priority Queue: date: 18/07/25
+
+void priorityQueueArea() {
+
+}
+
 
 int main(){
 
-    list()
 
+    QueueArea();
     return 0;
 }
