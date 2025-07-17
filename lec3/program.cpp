@@ -132,11 +132,31 @@ void vectors() {
     // }
 }
 
+// list
+void list() {
+
+    // basic declaration
+    llist<int> ls;
+
+    // pusing a value at back
+    ls.push_back(2);
+    ls.emplace_back(5);
+
+
+    // pushing a value at front
+    ls.push_front(3);
+    ls.empplace_front(1);
+
+
+    cout << ls << endl;
+
+}
+
 
 
 int main(){
 
-    vectors();
+    list()
 
     return 0;
 }
