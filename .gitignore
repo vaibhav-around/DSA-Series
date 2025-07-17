@@ -1,3 +1,15 @@
+# Ignore executables
 *.exe
-*.log
+
+# Ignore object files
+*.o
+*.obj
+
+# Ignore temporary files
 *.tmp
+*.log
+
+# Ignore editor files
+*.vscode/
+*.idea/
+*.swp
