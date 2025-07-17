@@ -13,4 +13,5 @@
 *.vscode/
 *.idea/
 *.swp
-./*/.vscode/
+**/.vscode/
+**/output.txt
