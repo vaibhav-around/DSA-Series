@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+#include <unordered_set>
 
 // pairs
 void pairs() {
@@ -243,16 +244,318 @@ void QueueArea() {
 }
 
 
-// priority Queue: date: 18/07/25
+// priority Queue: non-linear data structure, principle is like value in biggest out
 
 void priorityQueueArea() {
 
+    priority_queue<int> pq;
+
+    pq.push(3); // {3}
+    pq.push(2); // {2,3}
+    pq.push(7); // {2,3,7}
+    pq.emplace(8); // {2,3,7,8}
+
+    cout << "Top Most Priority queue element: " << pq.top() << endl;
+    pq.pop();
+    cout << "Top Most Priority queue element: " << pq.top() << endl;
+
+    // to create priority queue of Minimum number on top
+    priority_queue<int, vector<int>, greater<int>> pq2;
+    pq2.push(3); // {3}
+    pq2.push(2); // {2,3}
+    pq2.push(7); // {2,3,7}
+    pq2.emplace(8); // {2,3,7,8}
+
+    cout << "Top Most Priority queue element: " << pq2.top() << endl;
+    pq2.pop();
+    cout << "Top Most Priority queue element: " << pq2.top() << endl;
+
 }
+
+
+// set : non linear ds, everthing is stored in sorted order, duplicates are not allowed in it.
+void setArea(){
+    set<int> st;
+    st.insert(3); // {3}
+    st.insert(1); // {1,3}
+    st.insert(3); // {1,3}
+    st.insert(4); // {1,3,4}
+
+    cout << "first value: " << *(st.begin()) << endl;
+    cout << "Last value: " << *(--st.end()) << endl;
+    cout << "Last value: " << *::prev(st.end()) << endl;
+
+    if(st.empty()){
+        cout << "Set is empty" << endl;
+    }else{
+        cout << "Size of Set is: " << st.size() << endl;
+    }
+
+    // using iterators
+    // auto it = st.find(1); // points to starting value address.
+
+    // it = st.find(5); // 5 doesn't exist so it will point like end()
+    // cout << "Last Value: " << *(--it) << endl;
+    
+    
+    // for(it;it != st.end(); it++){
+    //     cout << "Values: " << *(it) << endl;
+    // }
+
+
+    // erasing value
+
+    // st.erase(1); // {3,4}
+    // for(auto it = st.begin();it != st.end(); it++){
+    //     cout << "Values: " << *(it) << endl;
+    // }
+
+    // st.erase(8); // 8 doesn't exists
+    // for(auto it = st.begin();it != st.end(); it++){
+    //     cout << "Values: " << *(it) << endl;
+    // }
+
+    // counting is values exists
+    // int cnt = st.count(6);
+    // if(cnt){
+    //     cout << "Value exists" << cnt << endl;
+    // }else{
+    //     cout << "Someting happened: " << cnt << endl;
+    // }
+
+
+    
+    for(auto it = st.begin();it != st.end(); it++){
+        cout << "Values: " << *(it) << endl;
+    }
+    // lower_bound, upper_bound
+
+    cout << "lowest value: " << *(st.lower_bound(1)) << endl;
+
+    auto it = st.upper_bound(3);
+    cout << "higest value according to key: " << *(it) << endl;
+
+}
+
+
+// multiset: sorted order, duplicates are allowed
+void multiSetArea() {
+    multiset<int> ms;
+
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1);
+    ms.emplace(3);
+    ms.emplace(3);
+    ms.emplace(3);
+    ms.emplace(3);
+    ms.emplace(3);
+    ms.emplace(3);
+
+    // for(auto it = ms.begin(); it != ms.end(); it++){
+    //     cout << "Item: " << *(it) << endl;
+    // }
+
+    ms.erase(1); // will erase all the elements
+    // for(auto it = ms.begin(); it != ms.end(); it++){
+    //     cout << "Item: " << *(it) << endl;
+    // }
+
+    // ms.erase(ms.find(3), ++ms.find(3)); // deletes 3 where it's first found and the 3 more items after 3
+    // for(auto it = ms.begin(); it != ms.end(); it++){
+    //     cout << "after deleting 3: " << *(it) << endl;
+    // }
+
+
+    // more better approach to delete a range
+    // find starting iterator
+    // auto it1 = ms.find(3);
+    // find till where you want to delete
+    // auto itend = next(it1, 3);
+
+    // ms.erase(it1,itend); // will delete 3 elements, from first 3 to 3 at 3rd index
+    // for(auto it = ms.begin(); it != ms.end(); it++){
+    //     cout << "after deleting 3: " << *(it) << endl;
+    // }
+
+
+
+}
+
+
+// unordered set: values should be unique, but no sorted, lower bound and upper bound doesn't work
+void unorderedSet() {
+    // 1. Declaration and Initialization
+    // An unordered_set stores unique elements in no particular order.
+    // Elements are hashed to determine their storage location.
+    unordered_set<int> us;
+    cout << "--- Unordered_Set Operations ---" << endl;
+
+    // 2. Insertion: insert()
+    // Inserts an element into the unordered_set.
+    // If the element already exists, it is not inserted (as elements must be unique).
+    // Returns a pair: {iterator to element, bool indicating if insertion took place}.
+    cout << "\n1. Insertion (us.insert()):" << endl;
+    us.insert(10); // {10}
+    us.insert(5);  // {10, 5} (order not guaranteed)
+    us.insert(20); // {10, 5, 20}
+    us.insert(5);  // No change, 5 is already present
+    us.insert(15); // {10, 5, 20, 15}
+
+    cout << "Elements after insertions: ";
+    // Iterating through an unordered_set:
+    // The order of iteration is not guaranteed and can change across runs or compilers.
+    for (int val : us) {
+        cout << val << " ";
+    }
+    cout << endl;
+    cout << "Size after insertions: " << us.size() << endl; // Expected: 4
+
+    // 3. Checking Size: size() and emptiness: empty()
+    cout << "\n2. Size and Empty Check (us.size(), us.empty()):" << endl;
+    cout << "Current size of unordered_set: " << us.size() << endl;
+    if (us.empty()) {
+        cout << "Unordered_set is empty." << endl;
+    } else {
+        cout << "Unordered_set is NOT empty." << endl;
+    }
+
+    // 4. Searching for an element: find() and count()
+    // find(): Returns an iterator to the element if found, or us.end() if not found.
+    // count(): Returns 1 if the element exists, 0 otherwise (since elements are unique).
+    cout << "\n3. Searching (us.find(), us.count()):" << endl;
+    int search_val_found = 10;
+    int search_val_not_found = 99;
+
+    // Using find()
+    auto it_found = us.find(search_val_found);
+    if (it_found != us.end()) {
+        cout << search_val_found << " found using find()." << endl;
+    } else {
+        cout << search_val_found << " NOT found using find()." << endl;
+    }
+
+    auto it_not_found = us.find(search_val_not_found);
+    if (it_not_found != us.end()) {
+        cout << search_val_not_found << " found using find()." << endl;
+    } else {
+        cout << search_val_not_found << " NOT found using find()." << endl;
+    }
+
+    // Using count()
+    if (us.count(search_val_found)) {
+        cout << search_val_found << " found using count()." << endl;
+    } else {
+        cout << search_val_found << " NOT found using count()." << endl;
+    }
+
+    if (us.count(search_val_not_found)) {
+        cout << search_val_not_found << " found using count()." << endl;
+    } else {
+        cout << search_val_not_found << " NOT found using count()." << endl;
+    }
+
+    // 5. Deletion: erase()
+    // Can erase by value or by iterator.
+    // Returns the number of elements erased (1 if found, 0 if not).
+    cout << "\n4. Deletion (us.erase()):" << endl;
+    int erase_val_success = 15;
+    int erase_val_fail = 100;
+
+    size_t erased_count = us.erase(erase_val_success); // Erase 15
+    cout << "Erased " << erased_count << " instance(s) of " << erase_val_success << endl;
+
+    erased_count = us.erase(erase_val_fail); // Try to erase 100
+    cout << "Erased " << erased_count << " instance(s) of " << erase_val_fail << endl;
+
+    cout << "Elements after erasing: ";
+    for (int val : us) {
+        cout << val << " ";
+    }
+    cout << endl;
+    cout << "Size after erasing: " << us.size() << endl; // Expected: 3
+
+    // 6. Clearing the unordered_set: clear()
+    cout << "\n5. Clearing (us.clear()):" << endl;
+    us.clear();
+    cout << "Size after clearing: " << us.size() << endl; // Expected: 0
+    if (us.empty()) {
+        cout << "Unordered_set is now empty." << endl;
+    }
+}
+
+
+
+// map : stores items in format of key and value, key and value could be pairs, keys should be unique and sorted
+// O(n)
+void mapArea() {
+    map<int,int> mpp1;
+    map<pair<int,int>,int> mpp2;
+
+    mpp1[2] = 3;
+    mpp1.emplace(9,3);
+    mpp1.insert({8,2});
+
+    // insertion in mpp2
+    mpp2.emplace(make_pair(1,3),3);
+    mpp2.emplace(make_pair(3,4),4);
+    mpp2.emplace(make_pair(2,3),5);
+
+    // iteration over mpp2
+    // for(auto pair: mpp2){
+    //     cout << "{" <<  "{ " << pair.first.first << ", " << pair.first.second << "} " << ", " << pair.second << "}" << endl;
+    // }
+
+    // for (auto pair : mpp1){
+    //     cout << "Key: " << pair.first << ", value: "<< pair.second << endl;
+    // }
+
+    // accessing values
+    // cout << "Value of key: " << mpp1[8] << endl; // expected: 2
+
+    // auto it = mpp1[8]; // mpp1 will return value not iterator object.
+
+    auto it = mpp1.find(8); // return iterator object which references to the item of key and value
+    
+    
+    if(it != mpp1.end()){
+    cout << it->first;
+    }
+
+}
+
+
+
+// multimap : stores items in format of key and value, key and value could be pairs, keys should not be unique and sorted
+
+
+// unorderedmap : stores items in format of key and value, key and value could be pairs, keys should be unique and not sorted
+// works in O(1), worst => O(n)
+
+
+
+// ================================================ Algorithms =====================================================
+void algo1 () {
+    array<int, 5> a= {4,45,34,23,64};
+
+    cout << "First Item: " << a[0] << endl;
+
+    sort(a.begin(), a.end());
+
+    cout << "Sorted Array: " << endl;
+
+    for(auto it:a){
+        cout << "element: " << it << endl;
+    }
+}
+
 
 
 int main(){
 
 
-    QueueArea();
+    algo1();
     return 0;
 }
