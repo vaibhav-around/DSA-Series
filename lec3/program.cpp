@@ -537,18 +537,78 @@ void mapArea() {
 
 
 // ================================================ Algorithms =====================================================
+
+bool comp (pair<int,int> p1,pair<int,int> p2) {
+    if(p1.second > p2.second) return true;
+    else if(p1.second < p2.second) return false;
+
+    // if they are same
+    if(p1.first > p2.first) return true;
+    return false;
+}
+
 void algo1 () {
-    array<int, 5> a= {4,45,34,23,64};
 
-    cout << "First Item: " << a[0] << endl;
+    // sorting with array
+    // array<int, 5> a= {4,45,34,23,64};
 
-    sort(a.begin(), a.end());
+    // cout << "First Item: " << a[0] << endl;
 
-    cout << "Sorted Array: " << endl;
+    // sort(a.begin(), a.end(), greater<int>);
 
-    for(auto it:a){
-        cout << "element: " << it << endl;
-    }
+    // cout << "Sorted Array: " << endl;
+
+    // for(auto it:a){
+    //     cout << "element: " << it << endl;
+    // }
+
+
+    // use of greater<int> class,
+    // vector<int> a = {1,3,3,5,6,7,8,9};
+    // sort(a.begin(), a.end(), greater<int>());
+
+    // for(auto it: a){
+    //     cout << "item: " << it << endl;
+    // }
+
+    // define a pair
+    // pair<int,int> a[] = {{2,3},{5,3},{1,2},{6,3},{8,2}};
+
+    // sort the pair first according to second element
+    // if second element is equal, then sort according to first element.
+
+    // sort(a, a+5, comp);
+    // for(auto it: a) { 
+    //     cout << "{" << it.first << "," << it.second << "}" << endl;
+    // }
+
+    // builtin_popcount(), return the number of bits in a variable
+    // int num = 7;
+    // int cnt = __builtin_popcount(num);
+    // cout << "7: " << cnt << endl;
+
+    // if number type is a bit different
+    // long long num2 = 7;
+    // int cnt2 = __builtin_popcountll(num2);
+    // cout << "ll7: " << cnt2 << endl;
+
+
+    // permutation in strings
+    // A permutation of a string is a re-arrangement of its characters. If a string has n distinct characters, then there are n! (n factorial) possible permutations
+
+    // string s = "123";
+
+    // do{
+    //     cout << "Permutation: " << s << endl;
+    // }while(next_permutation(s.begin(), s.end()));
+
+    // finding max element
+    array<int, 6> a  = {1,3,6,3,2,1};
+
+    int maxElement = *max_element(a.begin(),a.end());
+
+    cout << "Max element: " << maxElement << endl;
+
 }
 
 

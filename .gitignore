@@ -15,3 +15,5 @@
 *.swp
 **/.vscode/
 **/output.txt
+
+*/.vscode/
