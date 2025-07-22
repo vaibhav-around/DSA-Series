@@ -89,10 +89,61 @@ int n_One_B(int i, int n){
 }
 
 
+
+// sum of first N numbers, assuming, n is 3 then 3 + 2+ 1= 6. With recursion
+
+int sum_Of_N(int n){
+    if(n > 0){
+        return n + sum_Of_N(n-1);
+    }
+}
+
+int sum_Of_N_1(int sum, int n){
+    sum = sum + n;
+    if(n < 1){
+        cout << sum << endl;
+        return 0;
+    }
+
+    sum_Of_N_1(sum, n-1);
+}
+
+// factorial of N
+int factorial(int n){
+    if(n == 0) return 1;
+    return n * factorial(n-1);
+}
+
+// reversing array
+int reverse_Arr(int i, int r,vector<int>& arr){
+     if ( i >= r) return 0;
+     swap(arr[i], arr[r]);
+     reverse_Arr(i+1, r-1, arr);
+}
+
+// reversing array with single pointer
+int reverse_Arr_2(int i, vector<int>& arr){
+    if(i > arr.size()/2) return 0;
+
+    swap(arr[i],arr[arr.size() - 1 - i]);
+    reverse_Arr_2(i+1, arr);
+}
+
+
+
 int main () {
     int num;
     string str;
     cin >> num >> str;
-    n_One_B(1,num);
+
+    // array declaration 
+    vector<int> arr = {1,2,3,4,5,6,7,8,9,10};
+    // cout << "Factorial of N: " << factorial(num) << endl;
+    // sum_Of_N_1(0, num);
+
+    reverse_Arr_2(0, arr);
+
+    for(int x: arr) cout << x << " ";
+    cout << endl;
     return 0;
 }
