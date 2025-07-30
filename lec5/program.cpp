@@ -129,6 +129,40 @@ int reverse_Arr_2(int i, vector<int>& arr){
     reverse_Arr_2(i+1, arr);
 }
 
+// reversing array with single pointer v2
+int reverse_Arr_3(int i,vector<int>& arr){
+         int n = arr.size();
+         
+         if(i >= n/2){
+            return 0;
+         }
+
+         swap(arr[i], arr[n-i-1]);
+
+         reverse_Arr_3(i+1,arr);
+}
+
+
+// checking if a string is palimdrome or not
+int palimdrome_1(int i,string str){
+    int j = str.size();
+    if(i > j/2){
+        return true;
+    }  
+    if(str[i] != str[j-i-1]){
+        return false;
+    }
+    return palimdrome_1(i+1, str);
+}
+
+
+// multiple recursion coll
+int fibonacci_1(int i){
+    if(i <= 1){
+        return i;
+    }
+    return fibonacci_1(i-1) + fibonacci_1(i-2);
+}
 
 
 int main () {
@@ -141,9 +175,11 @@ int main () {
     // cout << "Factorial of N: " << factorial(num) << endl;
     // sum_Of_N_1(0, num);
 
-    reverse_Arr_2(0, arr);
+    // cout << palimdrome_1(0,"MADSM") << endl;
 
-    for(int x: arr) cout << x << " ";
+    cout << "Recursion Return: " << fibonacci_1(6);
+    // for(int x: arr) cout << x << " ";
     cout << endl;
     return 0;
+
 }
